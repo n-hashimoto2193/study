@@ -28,50 +28,53 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.batsText = new System.Windows.Forms.TextBox();
+            this.hitsText = new System.Windows.Forms.TextBox();
+            this.end_button = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.clear_button = new System.Windows.Forms.Button();
+            this.averageText = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // textBox1
+            // batsText
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.batsText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox1.Location = new System.Drawing.Point(315, 103);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(147, 37);
-            this.textBox1.TabIndex = 0;
-
+            this.batsText.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.batsText.Location = new System.Drawing.Point(315, 103);
+            this.batsText.Name = "batsText";
+            this.batsText.Size = new System.Drawing.Size(147, 37);
+            this.batsText.TabIndex = 0;
+            this.batsText.Text = "0";
+            this.batsText.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox2
+            // hitsText
             // 
-            this.textBox2.Font = new System.Drawing.Font("MS UI Gothic", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox2.Location = new System.Drawing.Point(315, 168);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(147, 40);
-            this.textBox2.TabIndex = 1;
+            this.hitsText.Font = new System.Drawing.Font("MS UI Gothic", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.hitsText.Location = new System.Drawing.Point(315, 168);
+            this.hitsText.Name = "hitsText";
+            this.hitsText.Size = new System.Drawing.Size(147, 40);
+            this.hitsText.TabIndex = 1;
+            this.hitsText.Text = "0";
+            this.hitsText.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // button1
+            // end_button
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.button1.Font = new System.Drawing.Font("ＭＳ ゴシック", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button1.Location = new System.Drawing.Point(638, 397);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(133, 41);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "終了";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.end_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.end_button.Font = new System.Drawing.Font("ＭＳ ゴシック", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.end_button.Location = new System.Drawing.Point(638, 397);
+            this.end_button.Name = "end_button";
+            this.end_button.Size = new System.Drawing.Size(133, 41);
+            this.end_button.TabIndex = 2;
+            this.end_button.Text = "終了";
+            this.end_button.UseVisualStyleBackColor = false;
+            this.end_button.Click += new System.EventHandler(this.end_button_Click);
             // 
             // label1
             // 
@@ -136,25 +139,28 @@
             this.button2.Text = "計算";
             this.button2.UseMnemonic = false;
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button3
+            // clear_button
             // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.button3.Font = new System.Drawing.Font("MS UI Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button3.Location = new System.Drawing.Point(638, 146);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(121, 41);
-            this.button3.TabIndex = 8;
-            this.button3.Text = "クリア";
-            this.button3.UseVisualStyleBackColor = false;
+            this.clear_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.clear_button.Font = new System.Drawing.Font("MS UI Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.clear_button.Location = new System.Drawing.Point(638, 146);
+            this.clear_button.Name = "clear_button";
+            this.clear_button.Size = new System.Drawing.Size(121, 41);
+            this.clear_button.TabIndex = 8;
+            this.clear_button.Text = "クリア";
+            this.clear_button.UseVisualStyleBackColor = false;
+            this.clear_button.Click += new System.EventHandler(this.clear_button_Click);
             // 
-            // textBox3
+            // averageText
             // 
-            this.textBox3.Font = new System.Drawing.Font("MS UI Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox3.Location = new System.Drawing.Point(282, 349);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(210, 47);
-            this.textBox3.TabIndex = 9;
+            this.averageText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.averageText.Font = new System.Drawing.Font("MS UI Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.averageText.Location = new System.Drawing.Point(282, 349);
+            this.averageText.Name = "averageText";
+            this.averageText.Size = new System.Drawing.Size(210, 47);
+            this.averageText.TabIndex = 9;
             // 
             // Form1
             // 
@@ -162,21 +168,20 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.averageText);
+            this.Controls.Add(this.clear_button);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.end_button);
+            this.Controls.Add(this.hitsText);
+            this.Controls.Add(this.batsText);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -184,17 +189,17 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox batsText;
+        private System.Windows.Forms.TextBox hitsText;
+        private System.Windows.Forms.Button end_button;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Button clear_button;
+        private System.Windows.Forms.TextBox averageText;
     }
 }
 

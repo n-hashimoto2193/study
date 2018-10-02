@@ -17,26 +17,40 @@ namespace WindowsFormsApp1
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
 
-        }
 
         static void Main()
         {
             Application.Run(new Form1());
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        
+
+        private void clear_button_Click(object sender, EventArgs e)
+        {
+            Clear();
+            
+        }
+
+
+        private void end_button_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void Clear()
         {
-                
-                textBox1.ResetText();
-                textBox2.ResetText();
+            batsText.Text = "0";
+            hitsText.Text = "0";
+            averageText.Text = "";
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (batsText.Text == "" || hitsText.Text == "")
+            {
+                MessageBox.Show("打数・安打数を両方を入力してください");
+            }
         }
 
         
