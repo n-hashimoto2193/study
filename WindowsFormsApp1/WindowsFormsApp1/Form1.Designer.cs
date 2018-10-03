@@ -30,14 +30,14 @@
         {
             this.batsText = new System.Windows.Forms.TextBox();
             this.hitsText = new System.Windows.Forms.TextBox();
-            this.end_button = new System.Windows.Forms.Button();
+            this.endButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.button2 = new System.Windows.Forms.Button();
-            this.clear_button = new System.Windows.Forms.Button();
+            this.calculationButton = new System.Windows.Forms.Button();
+            this.clearButton = new System.Windows.Forms.Button();
             this.averageText = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
@@ -64,17 +64,17 @@
             this.hitsText.Text = "0";
             this.hitsText.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // end_button
+            // endButton
             // 
-            this.end_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.end_button.Font = new System.Drawing.Font("ＭＳ ゴシック", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.end_button.Location = new System.Drawing.Point(638, 397);
-            this.end_button.Name = "end_button";
-            this.end_button.Size = new System.Drawing.Size(133, 41);
-            this.end_button.TabIndex = 2;
-            this.end_button.Text = "終了";
-            this.end_button.UseVisualStyleBackColor = false;
-            this.end_button.Click += new System.EventHandler(this.end_button_Click);
+            this.endButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.endButton.Font = new System.Drawing.Font("ＭＳ ゴシック", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.endButton.Location = new System.Drawing.Point(638, 397);
+            this.endButton.Name = "endButton";
+            this.endButton.Size = new System.Drawing.Size(133, 41);
+            this.endButton.TabIndex = 2;
+            this.endButton.Text = "終了";
+            this.endButton.UseVisualStyleBackColor = false;
+            this.endButton.Click += new System.EventHandler(this.endButton_Click);
             // 
             // label1
             // 
@@ -128,30 +128,30 @@
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // button2
+            // calculationButton
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.button2.Font = new System.Drawing.Font("MS UI Gothic", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button2.Location = new System.Drawing.Point(258, 236);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(262, 58);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "計算";
-            this.button2.UseMnemonic = false;
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.calculationButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.calculationButton.Font = new System.Drawing.Font("MS UI Gothic", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.calculationButton.Location = new System.Drawing.Point(258, 236);
+            this.calculationButton.Name = "calculationButton";
+            this.calculationButton.Size = new System.Drawing.Size(262, 58);
+            this.calculationButton.TabIndex = 7;
+            this.calculationButton.Text = "計算";
+            this.calculationButton.UseMnemonic = false;
+            this.calculationButton.UseVisualStyleBackColor = false;
+            this.calculationButton.Click += new System.EventHandler(this.calculationButtons_click);
             // 
-            // clear_button
+            // clearButton
             // 
-            this.clear_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.clear_button.Font = new System.Drawing.Font("MS UI Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.clear_button.Location = new System.Drawing.Point(638, 146);
-            this.clear_button.Name = "clear_button";
-            this.clear_button.Size = new System.Drawing.Size(121, 41);
-            this.clear_button.TabIndex = 8;
-            this.clear_button.Text = "クリア";
-            this.clear_button.UseVisualStyleBackColor = false;
-            this.clear_button.Click += new System.EventHandler(this.clear_button_Click);
+            this.clearButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.clearButton.Font = new System.Drawing.Font("MS UI Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.clearButton.Location = new System.Drawing.Point(638, 146);
+            this.clearButton.Name = "clearButton";
+            this.clearButton.Size = new System.Drawing.Size(121, 41);
+            this.clearButton.TabIndex = 8;
+            this.clearButton.Text = "クリア";
+            this.clearButton.UseVisualStyleBackColor = false;
+            this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
             // 
             // averageText
             // 
@@ -169,13 +169,13 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.averageText);
-            this.Controls.Add(this.clear_button);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.clearButton);
+            this.Controls.Add(this.calculationButton);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.end_button);
+            this.Controls.Add(this.endButton);
             this.Controls.Add(this.hitsText);
             this.Controls.Add(this.batsText);
             this.Controls.Add(this.menuStrip1);
@@ -191,14 +191,14 @@
 
         private System.Windows.Forms.TextBox batsText;
         private System.Windows.Forms.TextBox hitsText;
-        private System.Windows.Forms.Button end_button;
+        private System.Windows.Forms.Button endButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button clear_button;
+        private System.Windows.Forms.Button calculationButton;
+        private System.Windows.Forms.Button clearButton;
         private System.Windows.Forms.TextBox averageText;
     }
 }

@@ -26,18 +26,11 @@ namespace WindowsFormsApp1
 
         
 
-        private void clear_button_Click(object sender, EventArgs e)
-        {
-            Clear();
-            
-        }
 
 
-        private void end_button_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
+        /// <summary>
+        /// メインフォーム初期表示
+        /// </summary>
         private void Clear()
         {
             batsText.Text = "0";
@@ -45,14 +38,148 @@ namespace WindowsFormsApp1
             averageText.Text = "";
         }
 
-        private void button2_Click(object sender, EventArgs e)
+
+        public void inputCheck()
         {
-            if (batsText.Text == "" || hitsText.Text == "")
+            if (batsText.Text == "2")
             {
-                MessageBox.Show("打数・安打数を両方を入力してください");
+                MessageBox.Show("打数・安打数を正の整数で入力してください");
+                Clear();
             }
         }
 
         
+
+
+        /// <summary>
+        /// 計算ボタンクリックイベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void calculationButtons_click(object sender, EventArgs e)
+        {
+
+            // 1.入力チェックを行う
+
+            // 入力チェック結果を取得
+            string message = InputCheck(batsText.Text, hitsText.Text);
+
+
+            // ⇒入力チェックの結果、エラーがあればメッセージをダイアログに出して処理終了
+
+            // ⇒入力チェックの結果、エラーが無ければ2へ
+
+
+
+
+            // 2.打率計算を行う
+            double averageVal = CalcAverage(batsText.Text, hitsText.Text);
+
+
+
+            // 3.計算結果を表示
+            averageText.Text = FormatAverage(averageVal);
+
+
+
+
+
+
+
+
+            //inputCheck();
+            //if (batsText.Text == "" || hitsText.Text == "")
+            //{
+            //    MessageBox.Show("打数・安打数を両方入力してください");
+            //    Clear();
+            //}
+        }
+
+        private string FormatAverage(double averageVal)
+        {
+            // TODO:スタブなので単にstringにして返しておく
+            return (0.324).ToString();
+        }
+
+
+        /// <summary>
+        /// 打率計算メソッド
+        /// </summary>
+        /// <param name="batsVal">打数</param>
+        /// <param name="hitsVal">安打数</param>
+        /// <returns>打率</returns>
+        private double CalcAverage(string batsVal, string hitsVal)
+        {
+            // TODO:スタブなので固定値を返すことにしておく
+            return 0.324;
+        }
+
+        private string InputCheck(string batsVal, string hitsVal)
+        {
+
+          //  1 - 1.未入力チェック
+		        //「打数」または「安打数」が空白の場合
+          //              メッセージ：「打数、安打数を両方入力してください」													
+					     //   をダイアログに表示して処理終了
+
+
+
+
+          //  1 - 2.正の整数チェック
+		        //「打数」または「安打数」の入力内容が正の整数以外の場合
+				      //  ※マイナス、小数点付きの数値をエラーにする
+          //              メッセージ：「打数、安打数は正の整数で入力してください」													
+					     //   をダイアログに表示して処理終了
+
+
+          //  1 - 4.整合性チェック
+		        //「打数」＜「安打数」の場合
+          //              メッセージ：「安打数は打数以下の値を入力してください」													
+
+
+
+
+            // TODO:スタブなので空白を返すことにしておく
+            return "";
+        }
+
+
+        /// <summary>
+        /// クリアボタンクリックイベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            Clear();
+        }
+
+
+        /// <summary>
+        /// 終了ボタンクリックイベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void endButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+
+
+        /// <summary>
+        /// インプットチェック　スタブ
+        /// </summary>
+        /// <param name="checkVal"></param>
+        /// <returns></returns>
+        private bool numCheck(string checkVal)
+        {
+            // TODO:スタブ
+            return true;
+
+            
+        }
+
+
     }
 }
