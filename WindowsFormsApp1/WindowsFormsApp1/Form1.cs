@@ -24,8 +24,6 @@ namespace WindowsFormsApp1
             Application.Run(new Form1());
         }
 
-        
-
 
 
         /// <summary>
@@ -60,7 +58,7 @@ namespace WindowsFormsApp1
         {
 
             // 1.入力チェックを行う
-
+            
             // 入力チェック結果を取得
             string message = InputCheck(batsText.Text, hitsText.Text);
 
@@ -83,16 +81,11 @@ namespace WindowsFormsApp1
 
 
 
+         
 
 
 
 
-            //inputCheck();
-            //if (batsText.Text == "" || hitsText.Text == "")
-            //{
-            //    MessageBox.Show("打数・安打数を両方入力してください");
-            //    Clear();
-            //}
         }
 
         private string FormatAverage(double averageVal)
@@ -111,30 +104,50 @@ namespace WindowsFormsApp1
         private double CalcAverage(string batsVal, string hitsVal)
         {
             // TODO:スタブなので固定値を返すことにしておく
-            return 0.324;
+            return 0.323;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="batsVal"></param>
+        /// <param name="hitsVal"></param>
+        /// <returns></returns>
         private string InputCheck(string batsVal, string hitsVal)
         {
 
-          //  1 - 1.未入力チェック
-		        //「打数」または「安打数」が空白の場合
-          //              メッセージ：「打数、安打数を両方入力してください」													
-					     //   をダイアログに表示して処理終了
+            //  1 - 1.未入力チェック
+            //「打数」または「安打数」が空白の場合
+            //              メッセージ：「打数、安打数を両方入力してください」													
+            //   をダイアログに表示して処理終了
+            if (batsVal == "" || hitsVal == "")
+            {
+                MessageBox.Show("打数・安打数を両方入力してください");
+                Clear();
+            }
 
 
 
+            //  1 - 2.正の整数チェック
+            //「打数」または「安打数」の入力内容が正の整数以外の場合
+            //  ※マイナス、小数点付きの数値をエラーにする
+            //              メッセージ：「打数、安打数は正の整数で入力してください」													
+            //   をダイアログに表示して処理終了
 
-          //  1 - 2.正の整数チェック
-		        //「打数」または「安打数」の入力内容が正の整数以外の場合
-				      //  ※マイナス、小数点付きの数値をエラーにする
-          //              メッセージ：「打数、安打数は正の整数で入力してください」													
-					     //   をダイアログに表示して処理終了
+            int i = int.Parse(batsVal);
+            int bl = int.Parse(hitsVal);
+            double d = double.Parse(batsVal);
 
+            if (i < 0 )
+            {
+                MessageBox.Show("打数・安打数は正の整数で入力してください");
+            }
 
-          //  1 - 4.整合性チェック
-		        //「打数」＜「安打数」の場合
-          //              メッセージ：「安打数は打数以下の値を入力してください」													
+            
+
+            //  1 - 4.整合性チェック
+            //「打数」＜「安打数」の場合
+            //              メッセージ：「安打数は打数以下の値を入力してください」													
 
 
 
