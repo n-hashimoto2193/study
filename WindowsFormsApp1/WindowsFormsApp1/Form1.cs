@@ -195,8 +195,8 @@ namespace WindowsFormsApp1
 			double batsDoubleVal = double.Parse(batsVal);
 			double hitsDoubleVal = double.Parse(hitsVal);
 
-			// 計算を実施
-			double retVal = hitsDoubleVal / batsDoubleVal;
+			// 計算を実施(少数第三位で四捨五入)
+			double retVal = Math.Round(hitsDoubleVal / batsDoubleVal, 3, MidpointRounding.AwayFromZero);
 
 			// 計算結果を返却
 			return retVal;
@@ -215,8 +215,6 @@ namespace WindowsFormsApp1
 
 			// 打率表示文字列
 			string retVal = "";
-
-			Console.WriteLine("averageVal:" + averageVal);
 
 			if (averageVal == 0.0)
 			{
