@@ -119,7 +119,7 @@ namespace WindowsFormsApp1
 			//「打数」または「安打数」が空白の場合
 			//              メッセージ：「打数、安打数を両方入力してください」													
 			//   をダイアログに表示して処理終了
-			if (batsVal == "" || hitsVal == "")
+			if (string.IsNullOrWhiteSpace(batsVal) || string.IsNullOrWhiteSpace(hitsVal))
 			{
 				return "打数・安打数を両方入力してください";
 			}
