@@ -51,7 +51,6 @@
             this.batsText.Name = "batsText";
             this.batsText.Size = new System.Drawing.Size(147, 37);
             this.batsText.TabIndex = 0;
-            this.batsText.Text = "0";
             this.batsText.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // hitsText
@@ -61,7 +60,6 @@
             this.hitsText.Name = "hitsText";
             this.hitsText.Size = new System.Drawing.Size(147, 40);
             this.hitsText.TabIndex = 1;
-            this.hitsText.Text = "0";
             this.hitsText.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // endButton
@@ -161,6 +159,7 @@
             this.averageText.Name = "averageText";
             this.averageText.Size = new System.Drawing.Size(210, 47);
             this.averageText.TabIndex = 9;
+            this.averageText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Form1
             // 
