@@ -43,13 +43,13 @@ namespace WindowsFormsApp1
 		private void calculationButtons_click(object sender, EventArgs e)
 		{
 			// テキストボックスの入力値を取り出す
-			string batsval = batsText.Text;
-			string hitsval = hitsText.Text;
+			string batsVal = batsText.Text;
+			string hitsVal = hitsText.Text;
 
 			// 1.入力チェックを行う
 
 			// 入力チェック結果を取得
-			string message = InputCheck(batsval, hitsval);
+			string message = InputCheck(batsVal, hitsVal);
 
 			if (!string.IsNullOrEmpty(message))
 			{
@@ -62,7 +62,7 @@ namespace WindowsFormsApp1
 
 
 			//1 - 5.打数判定
-			if ("0".Equals(batsval))
+			if ("0".Equals(batsVal))
 			{
 				//	打数がゼロの場合：			
 				//		(打率計算を行わずに)打率表示テキストボックスに「"ー"」を表示する
@@ -70,11 +70,16 @@ namespace WindowsFormsApp1
 			}
 			else
 			{
-				//	打数がゼロ以外の場合：			
-				//		2 - 1の打率計算を実施
+                //	打数がゼロ以外の場合：			
+                //		2 - 1の打率計算を実施
 
-				// 2.打率計算を行う
-				double averageVal = CalcAverage(batsval, hitsval);
+                // 計算結果を小数値(double)で取得するため、打数と安打数をdouble型に変換
+                // ※ 1 - 2.正の整数チェックが終わっているのでdouble.Parseがエラーになる心配がない
+                double batsDoubleVal = double.Parse(batsVal);
+                double hitsDoubleVal = double.Parse(hitsVal);
+
+                // 2.打率計算を行う
+                double averageVal = CalcAverage(batsDoubleVal, hitsDoubleVal);
 
 				// 3.計算結果を表示
 				averageText.Text = FormatAverage(averageVal);
@@ -186,14 +191,9 @@ namespace WindowsFormsApp1
 		/// <param name="batsVal">打数</param>
 		/// <param name="hitsVal">安打数</param>
 		/// <returns>打率</returns>
-		private double CalcAverage(string batsVal, string hitsVal)
+		private double CalcAverage(double batsDoubleVal, double hitsDoubleVal)
 		{
 			//打率 ＝ 安打数÷打数
-
-			// 計算結果を小数値(double)で取得するため、打数と安打数をdouble型に変換
-			// ※ 1 - 2.正の整数チェックが終わっているのでdouble.Parseがエラーになる心配がない
-			double batsDoubleVal = double.Parse(batsVal);
-			double hitsDoubleVal = double.Parse(hitsVal);
 
 			// 計算を実施(少数第三位で四捨五入)
 			double retVal = Math.Round(hitsDoubleVal / batsDoubleVal, 3, MidpointRounding.AwayFromZero);
