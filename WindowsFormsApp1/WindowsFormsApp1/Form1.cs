@@ -5,14 +5,22 @@ namespace WindowsFormsApp1
 {
 	public partial class Form1 : Form
     {
+
+        /// <summary>
+        /// サービスクラス
+        /// </summary>
+        AverageCalcService service;
+
         /// <summary>
 		/// コンストラクタ
 		/// </summary>
 		public Form1()
         {
             InitializeComponent();
+            // サービスクラスのインスタンスを生成
+            service = new AverageCalcService();
 
-		}
+        }
 
         /// <summary>
 		/// メイン処理
@@ -31,6 +39,7 @@ namespace WindowsFormsApp1
 		/// <param name="e"></param>
 		private void Form1_Load(object sender, EventArgs e)
 		{
+            // フォーム内容初期化
 			Clear();
 		}
 
@@ -41,7 +50,8 @@ namespace WindowsFormsApp1
 		/// <param name="e"></param>
 		private void clearButton_Click(object sender, EventArgs e)
 		{
-			Clear();
+            // フォーム内容初期化
+            Clear();
 		}
 
 		/// <summary>
@@ -145,7 +155,7 @@ namespace WindowsFormsApp1
 			//   をダイアログに表示して処理終了
 
 
-			if (!CheckPositiveNum(batsVal) || !CheckPositiveNum(hitsVal))
+			if (!service.CheckPositiveNum(batsVal) || !service.CheckPositiveNum(hitsVal))
 			{
 				return "打数・安打数は正の整数で入力してください";
 			}
@@ -166,34 +176,6 @@ namespace WindowsFormsApp1
 			return "";
 		}
 
-
-		/// <summary>
-		/// 正の整数チェック
-		/// </summary>
-		/// <param name="checkVal">チェック対象の値</param>
-		/// <returns>チェック対象が正の整数の場合：true</returns>
-		private bool CheckPositiveNum(string checkVal)
-		{
-			int checkIntVal;
-			if (int.TryParse(checkVal, out checkIntVal))
-			{
-				// 数値変換成功
-				if (checkIntVal < 0)
-				{
-					// 負の整数なのでfalseを返却
-					return false;
-				}
-			}
-			else
-			{
-				// 整数ではないのでfalseを返却
-				return false;
-			}
-
-			// 正の整数であることが確認できたのでtrueを返却
-			return true;
-		}
-
 		/// <summary>
 		/// 打率計算メソッド
 		/// </summary>
@@ -210,7 +192,6 @@ namespace WindowsFormsApp1
 			// 計算結果を返却
 			return retVal;
 		}
-
 
 		/// <summary>
 		/// 打率を表示用文字列にフォーマットする
@@ -261,7 +242,6 @@ namespace WindowsFormsApp1
 			TextBox txt = (TextBox)sender;
 			txt.SelectAll();
 		}
-
 
 		#endregion
 	}
