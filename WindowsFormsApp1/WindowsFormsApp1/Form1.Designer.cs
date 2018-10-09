@@ -48,7 +48,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.batsText.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.batsText.Location = new System.Drawing.Point(236, 81);
-			this.batsText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.batsText.Margin = new System.Windows.Forms.Padding(2);
 			this.batsText.Name = "batsText";
 			this.batsText.Size = new System.Drawing.Size(111, 31);
 			this.batsText.TabIndex = 0;
@@ -60,7 +60,7 @@
 			// 
 			this.hitsText.Font = new System.Drawing.Font("MS UI Gothic", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.hitsText.Location = new System.Drawing.Point(236, 138);
-			this.hitsText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.hitsText.Margin = new System.Windows.Forms.Padding(2);
 			this.hitsText.Name = "hitsText";
 			this.hitsText.Size = new System.Drawing.Size(111, 34);
 			this.hitsText.TabIndex = 1;
@@ -73,7 +73,7 @@
 			this.endButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
 			this.endButton.Font = new System.Drawing.Font("ＭＳ ゴシック", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.endButton.Location = new System.Drawing.Point(478, 318);
-			this.endButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.endButton.Margin = new System.Windows.Forms.Padding(2);
 			this.endButton.Name = "endButton";
 			this.endButton.Size = new System.Drawing.Size(100, 33);
 			this.endButton.TabIndex = 4;
@@ -143,7 +143,7 @@
 			this.calculationButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
 			this.calculationButton.Font = new System.Drawing.Font("MS UI Gothic", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.calculationButton.Location = new System.Drawing.Point(216, 189);
-			this.calculationButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.calculationButton.Margin = new System.Windows.Forms.Padding(2);
 			this.calculationButton.Name = "calculationButton";
 			this.calculationButton.Size = new System.Drawing.Size(218, 46);
 			this.calculationButton.TabIndex = 2;
@@ -157,7 +157,7 @@
 			this.clearButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
 			this.clearButton.Font = new System.Drawing.Font("MS UI Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.clearButton.Location = new System.Drawing.Point(478, 117);
-			this.clearButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.clearButton.Margin = new System.Windows.Forms.Padding(2);
 			this.clearButton.Name = "clearButton";
 			this.clearButton.Size = new System.Drawing.Size(91, 33);
 			this.clearButton.TabIndex = 3;
@@ -170,7 +170,7 @@
 			this.averageText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
 			this.averageText.Font = new System.Drawing.Font("MS UI Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.averageText.Location = new System.Drawing.Point(216, 267);
-			this.averageText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.averageText.Margin = new System.Windows.Forms.Padding(2);
 			this.averageText.Name = "averageText";
 			this.averageText.Size = new System.Drawing.Size(218, 39);
 			this.averageText.TabIndex = 9;
@@ -194,9 +194,10 @@
 			this.Controls.Add(this.batsText);
 			this.Controls.Add(this.menuStrip1);
 			this.MainMenuStrip = this.menuStrip1;
-			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.Margin = new System.Windows.Forms.Padding(2);
 			this.Name = "Form1";
 			this.Text = "Form1";
+			this.Load += new System.EventHandler(this.Form1_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

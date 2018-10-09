@@ -5,14 +5,13 @@ namespace WindowsFormsApp1
 {
 	public partial class Form1 : Form
     {
-
         /// <summary>
 		/// コンストラクタ
 		/// </summary>
 		public Form1()
         {
             InitializeComponent();
-			Clear();
+
 		}
 
         /// <summary>
@@ -22,8 +21,18 @@ namespace WindowsFormsApp1
         {
             Application.Run(new Form1());
 		}
-				
+
 		#region イベント
+
+		/// <summary>
+		/// フォーム初期表示イベント
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void Form1_Load(object sender, EventArgs e)
+		{
+			Clear();
+		}
 
 		/// <summary>
 		/// クリアボタンクリックイベント
@@ -253,8 +262,7 @@ namespace WindowsFormsApp1
 			txt.SelectAll();
 		}
 
+
 		#endregion
-
-
 	}
 }
