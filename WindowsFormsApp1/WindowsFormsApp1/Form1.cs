@@ -24,6 +24,7 @@ namespace WindowsFormsApp1
             Application.Run(new Form1());          
         }
 
+        
 
         /// <summary>
         /// メインフォーム初期表示/クリア機能
@@ -35,15 +36,16 @@ namespace WindowsFormsApp1
             averageText.Text = "";
         }
 
+        
 
 
 
-        /// <summary>
-        /// 計算ボタンクリックイベント
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void calculationButtons_click(object sender, EventArgs e)
+    /// <summary>
+    /// 計算ボタンクリックイベント
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void calculationButtons_click(object sender, EventArgs e)
         {
 
             // 1.入力チェックを行う
@@ -58,15 +60,13 @@ namespace WindowsFormsApp1
                 return;
             }
 
+            
+                // 2.打率計算を行う  
 
-
-            // 2.打率計算を行う  
-
-            // 1 - 5 打数がゼロの場合
-            if (batsText.Text == "0")
+                // 1 - 5 打数がゼロの場合
+                if (batsText.Text == "0")
             {
                 averageText.Text = "-";
-
             }
 
             //打数がゼロ以外の場合
@@ -76,18 +76,65 @@ namespace WindowsFormsApp1
             
             else 
             {
-             double averageVal = CalcAverage(batsText.Text, hitsText.Text);
-             // 3.計算結果を表示
-             //実行確認でコメントアウト
-             //averageText.Text = FormatAverage(averageVal);
+             double batsVal = double.Parse(batsText.Text);
+             double hitsVal = double.Parse(hitsText.Text);
 
-                averageText.Text = (averageVal).ToString();
+             double averageVal = CalcAverage(batsVal, hitsVal);
+             // 3.計算結果を表示
+
+             averageText.Text = (averageVal).ToString();
+             string aveCharacterString = AveFormat(averageVal);
+
+                averageText.Text = aveCharacterString;
+
+
+
+            }
+         
+                
+
+        }
+        // 3.計算した打率を打率表示テキストボックスに表示
+        //打率計算メソッドの結果を小数値を　「x割y分z厘」　のフォーマットに整形する
+
+        //打率表示整形メソッド
+
+            private string AveFormat(double averageVal)
+            {
+                
+                double ave = averageVal;
+                if (ave == 1)
+                {
+                    return "10 割 0 分 0 厘";
+                }
+                else if (ave == 0)
+                {
+                    return "0 割 0 分 0 厘";
+                }
+                string aveText = ave.ToString();
+                
+
+                char ave1 = aveText[2];
+                char ave2 = aveText[3];
+                char ave3 = aveText[4];
+            //string ave1 = aveText.Substring(2,1);
+            //string ave2 = aveText.Substring(3,1);
+            //string ave3 = aveText.Substring(4,1);
+
+            return ave1 + " " + "割" + " " + ave2 + " " + "分"+ " "  + ave3 + " " + "厘";
             }
 
 
-        
+        //string stTarget = "ABCDEFG";
 
-        }
+        // 4 の要素にあたる文字を取得する
+        //char chOne = stTarget[4];
+
+
+
+
+
+
         //実行確認でコメントアウト
         //private string FormatAverage(double averageVal)
         //{
@@ -102,18 +149,18 @@ namespace WindowsFormsApp1
         /// <param name="batsVal">打数</param>
         /// <param name="hitsVal">安打数</param>
         /// <returns>打率</returns>
-        private double CalcAverage(string batsVal, string hitsVal)
+
+
+
+
+        private double CalcAverage(double batNum, double hitNum)
         {
             //Console.WriteLine("★batsVal：" + batsVal);
             //Console.WriteLine("★hitsVal：" + hitsVal);
 
-            double batNum = double.Parse(batsVal);
-            double hitNum = double.Parse(hitsVal);
 
-            
-
-
-            return hitNum / batNum;
+            double aveRounding = hitNum / batNum;
+            return Math.Round(aveRounding, 3, MidpointRounding.AwayFromZero);
 
 
             // TODO:スタブなので固定値を返すことにしておく
@@ -122,7 +169,7 @@ namespace WindowsFormsApp1
             //Console.WriteLine("★retVal：" + retVal);
 
             //return retVal;
-            
+
         }
             
 
@@ -142,22 +189,34 @@ namespace WindowsFormsApp1
             //   をダイアログに表示して処理終了
             if (!string.IsNullOrWhiteSpace(batsText.Text))
             {
-                // nullではなく、かつ空文字列でもなく、かつ空白文字列でもない
+             //nullではなく、かつ空文字列でもなく、かつ空白文字列でもない
             }
-            else if (!string.IsNullOrWhiteSpace(hitsText.Text))
+             else 
             {
-                // nullではなく、かつ空文字列でもなく、かつ空白文字列でもない
+             //null、もしくは空文字列、もしくは空白文字列である
+             return "打数、安打数を両方入力してください";
             }
-            else 
+
+            if (!string.IsNullOrWhiteSpace(hitsText.Text))
             {
-                // null、もしくは空文字列、もしくは空白文字列である
+                //nullではなく、かつ空文字列でもなく、かつ空白文字列でもない
+            }
+            else
+            {
+                //null、もしくは空文字列、もしくは空白文字列である
                 return "打数、安打数を両方入力してください";
             }
 
-
+      
 
             double batNum = double.Parse(batsVal);
             double hitNum = double.Parse(hitsVal);
+
+
+            
+
+
+
 
 
 

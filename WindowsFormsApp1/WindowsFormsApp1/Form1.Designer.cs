@@ -130,9 +130,9 @@
             // 
             this.calculationButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.calculationButton.Font = new System.Drawing.Font("MS UI Gothic", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.calculationButton.Location = new System.Drawing.Point(258, 236);
+            this.calculationButton.Location = new System.Drawing.Point(228, 238);
             this.calculationButton.Name = "calculationButton";
-            this.calculationButton.Size = new System.Drawing.Size(262, 58);
+            this.calculationButton.Size = new System.Drawing.Size(354, 58);
             this.calculationButton.TabIndex = 7;
             this.calculationButton.Text = "計算";
             this.calculationButton.UseMnemonic = false;
@@ -155,9 +155,9 @@
             // 
             this.averageText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.averageText.Font = new System.Drawing.Font("MS UI Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.averageText.Location = new System.Drawing.Point(282, 349);
+            this.averageText.Location = new System.Drawing.Point(266, 336);
             this.averageText.Name = "averageText";
-            this.averageText.Size = new System.Drawing.Size(210, 47);
+            this.averageText.Size = new System.Drawing.Size(316, 47);
             this.averageText.TabIndex = 9;
             this.averageText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
