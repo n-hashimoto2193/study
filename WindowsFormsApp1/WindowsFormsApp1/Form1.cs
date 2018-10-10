@@ -44,7 +44,6 @@ namespace WindowsFormsApp1
     /// <param name="e"></param>
     private void calculationButtons_click(object sender, EventArgs e)
         {
-
             // 1.入力チェックを行う
 
             // 入力チェック結果を取得
@@ -68,8 +67,7 @@ namespace WindowsFormsApp1
 
             //打数がゼロ以外の場合
             //打率計算を実施
-
-            
+        
             
             else 
             {
@@ -77,25 +75,21 @@ namespace WindowsFormsApp1
              double hitsVal = double.Parse(hitsText.Text);
 
              double averageVal = CalcAverage(batsVal, hitsVal);
-             // 3.計算結果を表示
 
-             averageText.Text = (averageVal).ToString();
+
+             // 3.計算結果を表示
+             
              string aveCharacterString = AveFormat(averageVal);
 
-                averageText.Text = aveCharacterString;
-
-
-
+             averageText.Text = aveCharacterString;
             }
          
                 
 
         }
-        // 3.計算した打率を打率表示テキストボックスに表示
-        //打率計算メソッドの結果を小数値を　「x割y分z厘」　のフォーマットに整形する
-
-        //打率表示整形メソッド
-
+            // 3.計算した打率を打率表示テキストボックスに表示
+            //打率計算メソッドの結果を小数値を　「x 割 y 分 z 厘」　のフォーマットに整形する
+            //打率表示整形メソッド
             private string AveFormat(double averageVal)
             {
                 
@@ -112,8 +106,8 @@ namespace WindowsFormsApp1
                 //打率数値をゼロ埋め
                 string aveText = string.Format("{0:f3}\r\n", ave);
 
-            
-
+                
+                //打率数値をテキストにし、文字列の配置場所で数値を取り出す
                 char ave1 = aveText[2];
                 char ave2 = aveText[3];
                 char ave3 = aveText[4];
@@ -125,23 +119,6 @@ namespace WindowsFormsApp1
             }
 
 
-        //string stTarget = "ABCDEFG";
-
-        // 4 の要素にあたる文字を取得する
-        //char chOne = stTarget[4];
-
-
-
-
-
-
-        //実行確認でコメントアウト
-        //private string FormatAverage(double averageVal)
-        //{
-        // TODO:スタブなので単にstringにして返しておく
-        // return (0.324).ToString();
-        //}
-
 
         /// <summary>
         /// 打率計算メソッド
@@ -151,20 +128,9 @@ namespace WindowsFormsApp1
         /// <returns>打率</returns>
         private double CalcAverage(double batNum, double hitNum)
         {
-            //Console.WriteLine("★batsVal：" + batsVal);
-            //Console.WriteLine("★hitsVal：" + hitsVal);
-
 
             double aveRounding = hitNum / batNum;
             return Math.Round(aveRounding, 3, MidpointRounding.AwayFromZero);
-
-
-            // TODO:スタブなので固定値を返すことにしておく
-            //double retVal = hitNum / batNum;
-
-            //Console.WriteLine("★retVal：" + retVal);
-
-            //return retVal;
 
         }
             
@@ -203,39 +169,52 @@ namespace WindowsFormsApp1
                 return "打数、安打数を両方入力してください";
             }
 
-      
 
+            //  1 - 2.正の整数チェック
+            //「打数」または「安打数」の入力内容が正の整数以外の場合
+            //  ※文字、小数点付きの数値をエラーにする
+            //     メッセージ：「打数、安打数は正の整数で入力してください」													
+            //     をダイアログに表示して処理終了
+
+
+            int number1 = 0;
+            bool canConvert = int.TryParse(batsVal , out number1);
+            if (canConvert == true)
+            {
+
+            } 
+            else
+                return "打数、安打数は正の整数で入力してください";
+                
+
+            int number2 = 0;
+            
+            canConvert = int.TryParse(hitsVal, out number2);
+            if (canConvert == true)
+            {
+
+            }             
+            else
+                return "打数、安打数は正の整数で入力してください";
+
+            // ※マイナス数値をエラーにする
+            //    メッセージ：「打数、安打数は正の整数で入力してください」													
+            //    をダイアログに表示して処理終了
             double batNum = double.Parse(batsVal);
             double hitNum = double.Parse(hitsVal);
 
 
-            
-
-
-
-
-
-
-
-
-            //  1 - 2.正の整数チェック
-            //「打数」または「安打数」の入力内容が正の整数以外の場合
-            //  ※マイナス、小数点付きの数値をエラーにする
-            //              メッセージ：「打数、安打数は正の整数で入力してください」													
-            //   をダイアログに表示して処理終了
-
-            if (batNum < 0  || hitNum < 0)
+            if (batNum < 0 || hitNum < 0)
             {
                 return "打数、安打数は正の整数で入力してください";
 
             }
 
 
-
             //  1 - 3.整合性チェック
             //「打数」＜「安打数」の場合
             //              メッセージ：「安打数は打数以下の値を入力してください」
-            
+
             if (batNum < hitNum)
             {
                 return "安打数は打数以下の値を入力してください";
