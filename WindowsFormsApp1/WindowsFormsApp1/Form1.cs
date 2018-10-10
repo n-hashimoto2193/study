@@ -25,10 +25,7 @@ namespace WindowsFormsApp1
         }
 
         
-
-        /// <summary>
-        /// メインフォーム初期表示/クリア機能
-        /// </summary>
+        // メインフォーム初期表示/クリア機能
         private void Clear()
         {
             batsText.Text = "0";
@@ -111,17 +108,20 @@ namespace WindowsFormsApp1
                 {
                     return "0 割 0 分 0 厘";
                 }
-                string aveText = ave.ToString();
-                
+
+                //打率数値をゼロ埋め
+                string aveText = string.Format("{0:f3}\r\n", ave);
+
+            
 
                 char ave1 = aveText[2];
                 char ave2 = aveText[3];
                 char ave3 = aveText[4];
-            //string ave1 = aveText.Substring(2,1);
-            //string ave2 = aveText.Substring(3,1);
-            //string ave3 = aveText.Substring(4,1);
+                //string ave1 = aveText.Substring(2,1);
+                //string ave2 = aveText.Substring(3,1);
+                //string ave3 = aveText.Substring(4,1);
 
-            return ave1 + " " + "割" + " " + ave2 + " " + "分"+ " "  + ave3 + " " + "厘";
+                return ave1 + " " + "割" + " " + ave2 + " " + "分"+ " "  + ave3 + " " + "厘";
             }
 
 
@@ -149,10 +149,6 @@ namespace WindowsFormsApp1
         /// <param name="batsVal">打数</param>
         /// <param name="hitsVal">安打数</param>
         /// <returns>打率</returns>
-
-
-
-
         private double CalcAverage(double batNum, double hitNum)
         {
             //Console.WriteLine("★batsVal：" + batsVal);
@@ -252,22 +248,15 @@ namespace WindowsFormsApp1
         }
 
 
-        /// <summary>
-        /// クリアボタンクリックイベント
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
+        // クリアボタンクリックイベント
         private void clearButton_Click(object sender, EventArgs e)
         {
             Clear();
         }
 
-
-        /// <summary>
-        /// 終了ボタンクリックイベント
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        
+        // 終了ボタンクリックイベント
         private void endButton_Click(object sender, EventArgs e)
         {
             this.Close();
