@@ -15,17 +15,16 @@ namespace WindowsFormsApp1
         public Form1()
         {
             InitializeComponent();
+            // メインフォーム初期表示
             Clear();
         }
-
 
         static void Main()
         {
             Application.Run(new Form1());          
         }
-
         
-        // メインフォーム初期表示/クリア機能
+        // /クリアメソッド
         private void Clear()
         {
             batsText.Text = "0";
@@ -33,22 +32,13 @@ namespace WindowsFormsApp1
             averageText.Text = "";
         }
 
-        
+ 
 
-
-
-    /// <summary>
-    /// 計算ボタンクリックイベント
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void calculationButtons_click(object sender, EventArgs e)
+        // 計算ボタンクリックイベント
+        private void calculationButtons_click(object sender, EventArgs e)
         {
-            // 1.入力チェックを行う
-
             // 入力チェック結果を取得
             string message = InputCheck(batsText.Text, hitsText.Text);
-
 
             // ⇒入力チェックの結果、エラーがあればメッセージをダイアログに出して処理終了
             if (!(message == null)) {
@@ -56,19 +46,13 @@ namespace WindowsFormsApp1
                 return;
             }
 
-            
-                // 2.打率計算を行う  
-
-                // 1 - 5 打数がゼロの場合
-                if (batsText.Text == "0")
+            // 打数がゼロの場合、"-" を表示
+            if (batsText.Text == "0")
             {
                 averageText.Text = "-";
             }
-
-            //打数がゼロ以外の場合
-            //打率計算を実施
-        
-            
+            // 打数がゼロ以外の場合
+            // 打率計算を実施       
             else 
             {
              double batsVal = double.Parse(batsText.Text);
@@ -76,133 +60,126 @@ namespace WindowsFormsApp1
 
              double averageVal = CalcAverage(batsVal, hitsVal);
 
-
-             // 3.計算結果を表示
-             
+             // 打率表示整形メソッドの結果をstring型に代入
              string aveCharacterString = AveFormat(averageVal);
-
+             // 打率表示テキストボックスのテキストに代入
              averageText.Text = aveCharacterString;
-            }
-         
-                
-
+            }             
         }
-            // 3.計算した打率を打率表示テキストボックスに表示
-            //打率計算メソッドの結果を小数値を　「x 割 y 分 z 厘」　のフォーマットに整形する
-            //打率表示整形メソッド
-            private string AveFormat(double averageVal)
-            {
-                
-                double ave = averageVal;
-                if (ave == 1)
-                {
-                    return "10 割 0 分 0 厘";
-                }
-                else if (ave == 0)
-                {
-                    return "0 割 0 分 0 厘";
-                }
+            
 
-                //打率数値をゼロ埋め
-                string aveText = string.Format("{0:f3}\r\n", ave);
+        // 打率表示整形メソッド
+        private string AveFormat(double averageVal)
+        {             
+             // 打率数値をdouble型に代入
+             double ave = averageVal;
+             // ave == 1 の時、「10 割 0 分 0 厘」と表示
+             if (ave == 1)
+             {
+                 return "10 割 0 分 0 厘";
+             }
+             // ave == 0 の時、「0 割 0 分 0 厘」と表示
+             else if (ave == 0)
+             {
+                 return "0 割 0 分 0 厘";
+             }
 
-                
-                //打率数値をテキストにし、文字列の配置場所で数値を取り出す
-                char ave1 = aveText[2];
-                char ave2 = aveText[3];
-                char ave3 = aveText[4];
-                //string ave1 = aveText.Substring(2,1);
-                //string ave2 = aveText.Substring(3,1);
-                //string ave3 = aveText.Substring(4,1);
-
-                return ave1 + " " + "割" + " " + ave2 + " " + "分"+ " "  + ave3 + " " + "厘";
-            }
-
+             // 打率数値をゼロ埋めし、string型に代入
+             string aveText = string.Format("{0:f3}\r\n", ave);
+               
+             // 打率数値をテキストにし、文字列の配置で数値を取り出す
+             char ave1 = aveText[2];
+             char ave2 = aveText[3];
+             char ave3 = aveText[4];
+             //「x 割 y 分 z 厘」に表示整形し、打率表示整形メソッドに返す
+             return ave1 + " " + "割" + " " + ave2 + " " + "分"+ " "  + ave3 + " " + "厘";
+         }
 
 
         /// <summary>
         /// 打率計算メソッド
         /// </summary>
-        /// <param name="batsVal">打数</param>
-        /// <param name="hitsVal">安打数</param>
-        /// <returns>打率</returns>
+        /// <param name="batNum">打数</param>
+        /// <param name="hitNum">安打数</param>
+        /// <returns></returns>
         private double CalcAverage(double batNum, double hitNum)
         {
-
+            // 打率を計算
             double aveRounding = hitNum / batNum;
+            // 打率を小数点第四位で四捨五入し、打率計算メソッドに返す
             return Math.Round(aveRounding, 3, MidpointRounding.AwayFromZero);
-
         }
             
 
-
         /// <summary>
-        /// 
+        /// 入力チェックメソッド
         /// </summary>
-        /// <param name="batsVal"></param>
-        /// <param name="hitsVal"></param>
+        /// <param name="batsVal">打数値</param>
+        /// <param name="hitsVal">安打数値</param>
         /// <returns></returns>
         private string InputCheck(string batsVal, string hitsVal)
         {
-
-            //  1 - 1.未入力チェック
-            //「打数」または「安打数」が空白の場合
-            //              メッセージ：「打数、安打数を両方入力してください」													
-            //   をダイアログに表示して処理終了
+            // 未入力チェック
+            //「打数」が空白の場合
             if (!string.IsNullOrWhiteSpace(batsText.Text))
             {
              //nullではなく、かつ空文字列でもなく、かつ空白文字列でもない
             }
              else 
             {
-             //null、もしくは空文字列、もしくは空白文字列である
-             return "打数、安打数を両方入力してください";
+                // null、もしくは空文字列、もしくは空白文字列である
+                // メッセージ：「打数、安打数を両方入力してください」をダイアログに表示して処理終了
+                return "打数、安打数を両方入力してください";
             }
 
+            //「安打数」が空白の場合
             if (!string.IsNullOrWhiteSpace(hitsText.Text))
             {
-                //nullではなく、かつ空文字列でもなく、かつ空白文字列でもない
+                // nullではなく、かつ空文字列でもなく、かつ空白文字列でもない
             }
             else
             {
-                //null、もしくは空文字列、もしくは空白文字列である
+                // null、もしくは空文字列、もしくは空白文字列である
+                // メッセージ：「打数、安打数を両方入力してください」をダイアログに表示して処理終了
                 return "打数、安打数を両方入力してください";
             }
 
 
-            //  1 - 2.正の整数チェック
-            //「打数」または「安打数」の入力内容が正の整数以外の場合
-            //  ※文字、小数点付きの数値をエラーにする
-            //     メッセージ：「打数、安打数は正の整数で入力してください」													
-            //     をダイアログに表示して処理終了
-
-
+            // 正の整数チェック
+            //「打数」の入力内容が正の整数以外の場合
+            // ※文字、小数点付きの数値をエラーにする
+            // メッセージ：「打数、安打数は正の整数で入力してください」をダイアログに表示して処理終了
             int number1 = 0;
             bool canConvert = int.TryParse(batsVal , out number1);
             if (canConvert == true)
             {
 
-            } 
+            }
             else
+            {
                 return "打数、安打数は正の整数で入力してください";
-                
+            }
 
+            // 「安打数」の入力内容が正の整数以外の場合
+            // ※文字、小数点付きの数値をエラーにする
+            // メッセージ：「打数、安打数は正の整数で入力してください」をダイアログに表示して処理終了
             int number2 = 0;
             
             canConvert = int.TryParse(hitsVal, out number2);
             if (canConvert == true)
             {
 
-            }             
+            }
             else
+            {
                 return "打数、安打数は正の整数で入力してください";
+            }
+                
 
             // ※マイナス数値をエラーにする
-            //    メッセージ：「打数、安打数は正の整数で入力してください」													
-            //    をダイアログに表示して処理終了
+            // メッセージ：「打数、安打数は正の整数で入力してください」をダイアログに表示して処理終了
             double batNum = double.Parse(batsVal);
             double hitNum = double.Parse(hitsVal);
-
 
             if (batNum < 0 || hitNum < 0)
             {
@@ -211,21 +188,17 @@ namespace WindowsFormsApp1
             }
 
 
-            //  1 - 3.整合性チェック
+            // 整合性チェック
             //「打数」＜「安打数」の場合
-            //              メッセージ：「安打数は打数以下の値を入力してください」
+            // メッセージ：「安打数は打数以下の値を入力してください」
 
             if (batNum < hitNum)
             {
                 return "安打数は打数以下の値を入力してください";
             }       
             
-
-
-            // TODO:スタブなので空白を返すことにしておく
             return null;
         }
-
 
 
         // クリアボタンクリックイベント
@@ -233,27 +206,11 @@ namespace WindowsFormsApp1
         {
             Clear();
         }
-
-        
+       
         // 終了ボタンクリックイベント
         private void endButton_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-
-
-        /// <summary>
-        /// インプットチェック　スタブ
-        /// </summary>
-        /// <param name="checkVal"></param>
-        /// <returns></returns>
-        private bool numCheck(string checkVal)
-        {
-            // TODO:スタブ
-            return false;
-
-            
         }
 
 
