@@ -132,6 +132,7 @@ namespace WindowsFormsApp1
             batsText.Text = "0";
             hitsText.Text = "0";
             averageText.Text = "";
+            averageText.ReadOnly = true;
         }
 
 		/// <summary>
