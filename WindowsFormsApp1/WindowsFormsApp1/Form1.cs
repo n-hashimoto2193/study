@@ -26,7 +26,7 @@ namespace WindowsFormsApp1
 		/// </summary>
 		static void Main()
         {
-            Application.Run(new Form1());          
+            Application.Run(new Form1());
         }
 
         #region イベントメソッド
@@ -49,8 +49,8 @@ namespace WindowsFormsApp1
         /// <param name="e"></param>
         private void clearButton_Click(object sender, EventArgs e)
         {
-			// フォーム状態初期化
-			Clear();
+            // フォーム状態初期化
+            Clear();
         }
 
         /// <summary>
@@ -60,8 +60,8 @@ namespace WindowsFormsApp1
         /// <param name="e"></param>
         private void endButton_Click(object sender, EventArgs e)
         {
-			// フォームを閉じる
-			this.Close();
+            // フォームを閉じる
+            this.Close();
         }
 
         /// <summary>
@@ -73,6 +73,7 @@ namespace WindowsFormsApp1
         {
             string batsVal = batsText.Text;
             string hitsVal = hitsText.Text;
+            bool chkMou = checkBoxMou.Checked;
 
             // 入力チェック結果を取得
             string message = InputCheck(batsVal, hitsVal);
@@ -93,80 +94,116 @@ namespace WindowsFormsApp1
             // 打率計算を実施       
             else
             {
-				// 打数,安打数を数値変換 ※入力値チェックが完了しているので数値変換時のエラーの心配なし
+                // 打数,安打数を数値変換 ※入力値チェックが完了しているので数値変換時のエラーの心配なし
                 double batsDoubleVal = double.Parse(batsVal);
                 double hitsDoubleVal = double.Parse(hitsVal);
 
-                double averageVal = CalcAverage(batsDoubleVal, hitsDoubleVal);
+                double averageVal = CalcAverage(batsDoubleVal, hitsDoubleVal, chkMou);
 
                 // 打率表示整形メソッドの結果をstring型に代入
-                string aveCharacterString = AveFormat(averageVal);
+                string aveCharacterString = AveFormat(averageVal, chkMou);
                 // 打率表示テキストボックスのテキストに代入
                 averageText.Text = aveCharacterString;
             }
         }
 
-		/// <summary>
-		/// テキストボックスフォーカスイベント
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void TextBox_Focus(object sender, EventArgs e)
-		{
-			// イベント発生元(sender)をテキストボックスにキャスト
-			TextBox txt = (TextBox)sender;
+        /// <summary>
+        /// テキストボックスフォーカスイベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TextBox_Focus(object sender, EventArgs e)
+        {
+            // イベント発生元(sender)をテキストボックスにキャスト
+            TextBox txt = (TextBox)sender;
 
-			// テキストボックスを全選択状態とする
-			txt.SelectAll();
-		}
+            // テキストボックスを全選択状態とする
+            txt.SelectAll();
+        }
 
-		#endregion
+        #endregion
 
-		#region privateメソッド
+        #region privateメソッド
 
-		/// <summary>
-		/// クリアメソッド
-		/// </summary>
-		private void Clear()
+        /// <summary>
+        /// クリアメソッド
+        /// </summary>
+        private void Clear()
         {
             batsText.Text = "0";
             hitsText.Text = "0";
             averageText.Text = "";
             averageText.ReadOnly = true;
+            checkBoxMou.Checked = false;
         }
 
-		/// <summary>
-		/// 打率表示整形メソッド
-		/// </summary>
-		/// <param name="averageVal">打率(小数値)</param>
-		/// <returns>打率(小数値)を「x 割 y 分 z 厘」書式で整形した文字列</returns>
-		private string AveFormat(double averageVal)
+        /// <summary>
+        /// 打率表示整形メソッド
+        /// </summary>
+        /// <param name="averageVal">打率(小数値)</param>
+        /// <returns>打率(小数値)を「x 割 y 分 z 厘」書式で整形した文字列</returns>
+        private string AveFormat(double averageVal, bool chkMou)
         {
-            // 書式フォーマット
-            string formatStr = "{0} 割 {1} 分 {2} 厘";
-
-            // 打率数値をdouble型に代入
-            double ave = averageVal;
-            // ave == 1 の時、「10 割 0 分 0 厘」と表示
-            if (ave == 1)
+            if (chkMou == true)
             {
-                return string.Format(formatStr, 10, 0, 0);
+                // 毛チェックボックスにチェックが入っているとき
+                // 書式フォーマット
+                string formatStr = "{0} 割 {1} 分 {2} 厘 {3} 毛";
+
+                // 打率数値をdouble型に代入
+                double ave = averageVal;
+                // ave == 1 の時、「10 割 0 分 0 厘 0 毛」と表示
+                if (ave == 1)
+                {
+                    return string.Format(formatStr, 10, 0, 0, 0);
+                }
+                // ave == 0 の時、「0 割 0 分 0 厘 0 毛」と表示
+                else if (ave == 0)
+                {
+                    return string.Format(formatStr, 0, 0, 0, 0);
+                }
+
+                // 打率数値をゼロ埋めし、string型に代入
+                string aveText = string.Format("{0:f4}", ave);
+
+                // 打率数値をテキストにし、文字列の配置で数値を取り出す
+                char ave1 = aveText[2];
+                char ave2 = aveText[3];
+                char ave3 = aveText[4];
+                char ave4 = aveText[5];
+                //「x 割 y 分 z 厘 a 毛」に表示整形し、打率表示整形メソッドの戻り値として返す
+                return string.Format(formatStr, ave1, ave2, ave3, ave4);
             }
-            // ave == 0 の時、「0 割 0 分 0 厘」と表示
-            else if (ave == 0)
+            else
             {
-                return string.Format(formatStr, 0, 0, 0);
+
+                // 毛チェックボックスにチェックが入っていないとき
+                // 書式フォーマット
+                string formatStr = "{0} 割 {1} 分 {2} 厘";
+
+                // 打率数値をdouble型に代入
+                double ave = averageVal;
+                // ave == 1 の時、「10 割 0 分 0 厘」と表示
+                if (ave == 1)
+                {
+                    return string.Format(formatStr, 10, 0, 0);
+                }
+                // ave == 0 の時、「0 割 0 分 0 厘」と表示
+                else if (ave == 0)
+                {
+                    return string.Format(formatStr, 0, 0, 0);
+                }
+
+                // 打率数値をゼロ埋めし、string型に代入
+                string aveText = string.Format("{0:f3}", ave);
+
+                // 打率数値をテキストにし、文字列の配置で数値を取り出す
+                char ave1 = aveText[2];
+                char ave2 = aveText[3];
+                char ave3 = aveText[4];
+                //「x 割 y 分 z 厘」に表示整形し、打率表示整形メソッドの戻り値として返す
+                return string.Format(formatStr, ave1, ave2, ave3);
             }
-
-            // 打率数値をゼロ埋めし、string型に代入
-            string aveText = string.Format("{0:f3}", ave);
-
-            // 打率数値をテキストにし、文字列の配置で数値を取り出す
-            char ave1 = aveText[2];
-            char ave2 = aveText[3];
-            char ave3 = aveText[4];
-			//「x 割 y 分 z 厘」に表示整形し、打率表示整形メソッドの戻り値として返す
-			return string.Format(formatStr, ave1, ave2, ave3);
         }
 
         /// <summary>
@@ -174,13 +211,25 @@ namespace WindowsFormsApp1
         /// </summary>
         /// <param name="batNum">打数</param>
         /// <param name="hitNum">安打数</param>
-        /// <returns>打率(小数点第四位で四捨五入)</returns>
-        private double CalcAverage(double batNum, double hitNum)
+        /// <param name="chkMou">チェック有無</param>
+        /// <returns>打率(小数点第四or五位で四捨五入)</returns>
+        private double CalcAverage(double batNum, double hitNum, bool chkMou)
         {
             // 打率を計算
             double aveRounding = hitNum / batNum;
-            // 打率を小数点第四位で四捨五入し、打率計算メソッドの戻り値として返す
-            return Math.Round(aveRounding, 3, MidpointRounding.AwayFromZero);
+
+            if (chkMou == true)
+            {
+                // 毛チェックボックスにチェックがある場合、
+                // 打率を小数点第五位で四捨五入し、打率計算メソッドの戻り値として返す
+                return Math.Round(aveRounding, 4, MidpointRounding.AwayFromZero);
+            }
+            else
+            {
+                // 毛チェックボックスにチェックがない場合
+                // 打率を小数点第四位で四捨五入し、打率計算メソッドの戻り値として返す
+                return Math.Round(aveRounding, 3, MidpointRounding.AwayFromZero);
+            }
         }
 
         /// <summary>
@@ -266,7 +315,8 @@ namespace WindowsFormsApp1
             return "";
         }
 
-        #endregion
 
+
+        #endregion
     }
 }

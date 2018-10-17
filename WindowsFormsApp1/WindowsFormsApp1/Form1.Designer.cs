@@ -39,6 +39,7 @@
             this.calculationButton = new System.Windows.Forms.Button();
             this.clearButton = new System.Windows.Forms.Button();
             this.averageText = new System.Windows.Forms.TextBox();
+            this.checkBoxMou = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // batsText
@@ -47,10 +48,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.batsText.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.batsText.Location = new System.Drawing.Point(315, 102);
+            this.batsText.Location = new System.Drawing.Point(222, 131);
             this.batsText.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.batsText.MaxLength = 6;
             this.batsText.Name = "batsText";
-            this.batsText.Size = new System.Drawing.Size(147, 37);
+            this.batsText.Size = new System.Drawing.Size(171, 37);
             this.batsText.TabIndex = 0;
             this.batsText.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.batsText.Click += new System.EventHandler(this.TextBox_Focus);
@@ -59,10 +61,11 @@
             // hitsText
             // 
             this.hitsText.Font = new System.Drawing.Font("MS UI Gothic", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.hitsText.Location = new System.Drawing.Point(315, 168);
+            this.hitsText.Location = new System.Drawing.Point(222, 198);
             this.hitsText.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.hitsText.MaxLength = 6;
             this.hitsText.Name = "hitsText";
-            this.hitsText.Size = new System.Drawing.Size(147, 40);
+            this.hitsText.Size = new System.Drawing.Size(171, 40);
             this.hitsText.TabIndex = 1;
             this.hitsText.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.hitsText.Click += new System.EventHandler(this.TextBox_Focus);
@@ -72,7 +75,7 @@
             // 
             this.endButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.endButton.Font = new System.Drawing.Font("ＭＳ ゴシック", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.endButton.Location = new System.Drawing.Point(637, 398);
+            this.endButton.Location = new System.Drawing.Point(438, 488);
             this.endButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.endButton.Name = "endButton";
             this.endButton.Size = new System.Drawing.Size(133, 41);
@@ -85,7 +88,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("ＭＳ ゴシック", 19.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label1.Location = new System.Drawing.Point(260, 39);
+            this.label1.Location = new System.Drawing.Point(177, 39);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(260, 33);
             this.label1.TabIndex = 3;
@@ -95,7 +98,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("ＭＳ ゴシック", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label2.Location = new System.Drawing.Point(131, 108);
+            this.label2.Location = new System.Drawing.Point(92, 136);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(124, 28);
             this.label2.TabIndex = 4;
@@ -106,7 +109,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("ＭＳ ゴシック", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label3.Location = new System.Drawing.Point(103, 180);
+            this.label3.Location = new System.Drawing.Point(64, 205);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(152, 28);
             this.label3.TabIndex = 5;
@@ -117,7 +120,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("MS UI Gothic", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label4.Location = new System.Drawing.Point(155, 349);
+            this.label4.Location = new System.Drawing.Point(66, 418);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(101, 28);
             this.label4.TabIndex = 5;
@@ -130,7 +133,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(612, 24);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -138,10 +141,10 @@
             // 
             this.calculationButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.calculationButton.Font = new System.Drawing.Font("MS UI Gothic", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.calculationButton.Location = new System.Drawing.Point(228, 238);
+            this.calculationButton.Location = new System.Drawing.Point(112, 327);
             this.calculationButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.calculationButton.Name = "calculationButton";
-            this.calculationButton.Size = new System.Drawing.Size(355, 58);
+            this.calculationButton.Size = new System.Drawing.Size(442, 58);
             this.calculationButton.TabIndex = 2;
             this.calculationButton.Text = "計算";
             this.calculationButton.UseMnemonic = false;
@@ -152,10 +155,10 @@
             // 
             this.clearButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.clearButton.Font = new System.Drawing.Font("MS UI Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.clearButton.Location = new System.Drawing.Point(637, 146);
+            this.clearButton.Location = new System.Drawing.Point(438, 84);
             this.clearButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.clearButton.Name = "clearButton";
-            this.clearButton.Size = new System.Drawing.Size(121, 41);
+            this.clearButton.Size = new System.Drawing.Size(133, 41);
             this.clearButton.TabIndex = 3;
             this.clearButton.Text = "クリア";
             this.clearButton.UseVisualStyleBackColor = false;
@@ -165,21 +168,35 @@
             // 
             this.averageText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.averageText.Font = new System.Drawing.Font("MS UI Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.averageText.Location = new System.Drawing.Point(267, 336);
+            this.averageText.Location = new System.Drawing.Point(164, 409);
             this.averageText.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.averageText.Name = "averageText";
             this.averageText.ReadOnly = true;
-            this.averageText.Size = new System.Drawing.Size(316, 47);
+            this.averageText.Size = new System.Drawing.Size(390, 47);
             this.averageText.TabIndex = 9;
             this.averageText.TabStop = false;
             this.averageText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // checkBoxMou
+            // 
+            this.checkBoxMou.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBoxMou.Font = new System.Drawing.Font("MS UI Gothic", 16.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.checkBoxMou.Location = new System.Drawing.Point(23, 252);
+            this.checkBoxMou.Name = "checkBoxMou";
+            this.checkBoxMou.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.checkBoxMou.Size = new System.Drawing.Size(221, 54);
+            this.checkBoxMou.TabIndex = 10;
+            this.checkBoxMou.Text = "毛まで算出　：";
+            this.checkBoxMou.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkBoxMou.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(612, 600);
+            this.Controls.Add(this.checkBoxMou);
             this.Controls.Add(this.averageText);
             this.Controls.Add(this.clearButton);
             this.Controls.Add(this.calculationButton);
@@ -214,6 +231,7 @@
         private System.Windows.Forms.Button calculationButton;
         private System.Windows.Forms.Button clearButton;
         private System.Windows.Forms.TextBox averageText;
+        private System.Windows.Forms.CheckBox checkBoxMou;
     }
 }
 
