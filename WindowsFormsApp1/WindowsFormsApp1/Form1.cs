@@ -12,7 +12,6 @@ namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
-
         /// <summary>
 		/// コンストラクター
 		/// </summary>
@@ -98,6 +97,7 @@ namespace WindowsFormsApp1
                 double batsDoubleVal = double.Parse(batsVal);
                 double hitsDoubleVal = double.Parse(hitsVal);
 
+                // 打率計算結果を取得
                 double averageVal = CalcAverage(batsDoubleVal, hitsDoubleVal, chkMou);
 
                 // 打率表示整形メソッドの結果をstring型に代入
@@ -138,13 +138,115 @@ namespace WindowsFormsApp1
         }
 
         /// <summary>
+        /// 入力チェックメソッド
+        /// </summary>
+        /// <param name="batsVal">打数値</param>
+        /// <param name="hitsVal">安打数値</param>
+        /// <returns>打数・安打数が空白の場合 メッセージ：打数、安打数を両方入力してください、
+        ///          打数の入力内容が正の整数以外の場合 メッセージ：打数、安打数は正の整数で入力してください
+        ///          マイナスのの数値の場合 メッセージ：打数、安打数は正の整数で入力してください
+        ///          「打数」＜「安打数」の場合 メッセージ：安打数は打数以下の値を入力してください</returns>
+        private string InputCheck(string batsVal, string hitsVal)
+        {
+            // 未入力チェック
+            //「打数」が空白の場合
+            if (string.IsNullOrWhiteSpace(batsVal))
+            {
+                // null、もしくは空文字列、もしくは空白文字列である
+                // メッセージ：「打数、安打数を両方入力してください」をダイアログに表示して処理終了
+                return "打数、安打数を両方入力してください";
+            }
+
+            //「安打数」が空白の場合
+            if (string.IsNullOrWhiteSpace(hitsVal))
+            {
+                // null、もしくは空文字列、もしくは空白文字列である
+                // メッセージ：「打数、安打数を両方入力してください」をダイアログに表示して処理終了
+                return "打数、安打数を両方入力してください";
+            }
+
+            // 正の整数チェック
+            //「打数」の入力内容が正の整数以外の場合
+            // ※文字、小数点付きの数値をエラーにする
+            // メッセージ：「打数、安打数は正の整数で入力してください」をダイアログに表示して処理終了
+            int batsNumber = 0;
+            bool canConvert = int.TryParse(batsVal, out batsNumber);
+            if (!canConvert)
+            {
+                return "打数、安打数は正の整数で入力してください";
+            }
+
+            // 「安打数」の入力内容が正の整数以外の場合
+            // ※文字、小数点付きの数値をエラーにする
+            // メッセージ：「打数、安打数は正の整数で入力してください」をダイアログに表示して処理終了
+            int hitsNumber = 0;
+
+            canConvert = int.TryParse(hitsVal, out hitsNumber);
+            if (!canConvert)
+            {
+                return "打数、安打数は正の整数で入力してください";
+            }
+
+            // ※マイナス数値をエラーにする
+            // メッセージ：「打数、安打数は正の整数で入力してください」をダイアログに表示して処理終了
+
+            if (batsNumber < 0 || hitsNumber < 0)
+            {
+                return "打数、安打数は正の整数で入力してください";
+
+            }
+
+            // 整合性チェック
+            //「打数」＜「安打数」の場合
+            // メッセージ：「安打数は打数以下の値を入力してください」
+
+            if (batsNumber < hitsNumber)
+            {
+                return "安打数は打数以下の値を入力してください";
+            }
+
+            // ここまで来たのでエラーなし＝空白を返却
+            return "";
+        }
+
+        /// <summary>
+        /// 打率計算メソッド
+        /// </summary>
+        /// <param name="batNum">打数</param>
+        /// <param name="hitNum">安打数</param>
+        /// <param name="chkMou">毛まで計算するかのチェック有無</param>
+        /// <returns>打率(小数点第四or五位で四捨五入)</returns>
+        private double CalcAverage(double batNum, double hitNum, bool chkMou)
+        {
+            // 打率を計算
+            double aveRounding = hitNum / batNum;
+
+            if (chkMou)
+            {
+                // 毛チェックボックスにチェックがある場合、
+                // 打率を小数点第五位で四捨五入し、打率計算メソッドの戻り値として返す
+                return Math.Round(aveRounding, 4, MidpointRounding.AwayFromZero);
+            }
+            else
+            {
+                // 毛チェックボックスにチェックがない場合
+                // 打率を小数点第四位で四捨五入し、打率計算メソッドの戻り値として返す
+                return Math.Round(aveRounding, 3, MidpointRounding.AwayFromZero);
+            }
+        }
+
+        /// <summary>
         /// 打率表示整形メソッド
         /// </summary>
         /// <param name="averageVal">打率(小数値)</param>
-        /// <returns>打率(小数値)を「x 割 y 分 z 厘」書式で整形した文字列</returns>
+        /// <param name="chkMou">毛まで計算するかのチェック有無</param>
+        /// <returns>
+        ///     <para>chkMou:trueの場合、打率(小数値)を「x 割 y 分 z 厘 a 毛」書式で整形した文字列</para>     
+        ///     <para>chkMou:falseの場合、打率(小数値)を「x 割 y 分 z 厘」書式で整形した文字列</para>
+        /// </returns>
         private string AveFormat(double averageVal, bool chkMou)
         {
-            if (chkMou == true)
+            if (chkMou)
             {
                 // 毛チェックボックスにチェックが入っているとき
                 // 書式フォーマット
@@ -176,7 +278,6 @@ namespace WindowsFormsApp1
             }
             else
             {
-
                 // 毛チェックボックスにチェックが入っていないとき
                 // 書式フォーマット
                 string formatStr = "{0} 割 {1} 分 {2} 厘";
@@ -205,117 +306,6 @@ namespace WindowsFormsApp1
                 return string.Format(formatStr, ave1, ave2, ave3);
             }
         }
-
-        /// <summary>
-        /// 打率計算メソッド
-        /// </summary>
-        /// <param name="batNum">打数</param>
-        /// <param name="hitNum">安打数</param>
-        /// <param name="chkMou">チェック有無</param>
-        /// <returns>打率(小数点第四or五位で四捨五入)</returns>
-        private double CalcAverage(double batNum, double hitNum, bool chkMou)
-        {
-            // 打率を計算
-            double aveRounding = hitNum / batNum;
-
-            if (chkMou == true)
-            {
-                // 毛チェックボックスにチェックがある場合、
-                // 打率を小数点第五位で四捨五入し、打率計算メソッドの戻り値として返す
-                return Math.Round(aveRounding, 4, MidpointRounding.AwayFromZero);
-            }
-            else
-            {
-                // 毛チェックボックスにチェックがない場合
-                // 打率を小数点第四位で四捨五入し、打率計算メソッドの戻り値として返す
-                return Math.Round(aveRounding, 3, MidpointRounding.AwayFromZero);
-            }
-        }
-
-        /// <summary>
-        /// 入力チェックメソッド
-        /// </summary>
-        /// <param name="batsVal">打数値</param>
-        /// <param name="hitsVal">安打数値</param>
-        /// <returns>打数・安打数が空白の場合 メッセージ：打数、安打数を両方入力してください、
-        ///          打数の入力内容が正の整数以外の場合 メッセージ：打数、安打数は正の整数で入力してください
-        ///          マイナスのの数値の場合 メッセージ：打数、安打数は正の整数で入力してください
-        ///          「打数」＜「安打数」の場合 メッセージ：安打数は打数以下の値を入力してください</returns>
-        private string InputCheck(string batsVal, string hitsVal)
-        {
-            // 未入力チェック
-            //「打数」が空白の場合
-            if (!string.IsNullOrWhiteSpace(batsVal))
-            {
-                //nullではなく、かつ空文字列でもなく、かつ空白文字列でもない
-            }
-            else
-            {
-                // null、もしくは空文字列、もしくは空白文字列である
-                // メッセージ：「打数、安打数を両方入力してください」をダイアログに表示して処理終了
-                return "打数、安打数を両方入力してください";
-            }
-
-            //「安打数」が空白の場合
-            if (!string.IsNullOrWhiteSpace(hitsVal))
-            {
-                // nullではなく、かつ空文字列でもなく、かつ空白文字列でもない
-            }
-            else
-            {
-                // null、もしくは空文字列、もしくは空白文字列である
-                // メッセージ：「打数、安打数を両方入力してください」をダイアログに表示して処理終了
-                return "打数、安打数を両方入力してください";
-            }
-
-
-            // 正の整数チェック
-            //「打数」の入力内容が正の整数以外の場合
-            // ※文字、小数点付きの数値をエラーにする
-            // メッセージ：「打数、安打数は正の整数で入力してください」をダイアログに表示して処理終了
-            int batsNumber = 0;
-            bool canConvert = int.TryParse(batsVal, out batsNumber);
-            if (!canConvert)
-            {
-                return "打数、安打数は正の整数で入力してください";
-            }
-
-            // 「安打数」の入力内容が正の整数以外の場合
-            // ※文字、小数点付きの数値をエラーにする
-            // メッセージ：「打数、安打数は正の整数で入力してください」をダイアログに表示して処理終了
-            int hitsNumber = 0;
-
-            canConvert = int.TryParse(hitsVal, out hitsNumber);
-            if (!canConvert)
-            {
-                return "打数、安打数は正の整数で入力してください";
-            }
-
-
-            // ※マイナス数値をエラーにする
-            // メッセージ：「打数、安打数は正の整数で入力してください」をダイアログに表示して処理終了
-
-            if (batsNumber < 0 || hitsNumber < 0)
-            {
-                return "打数、安打数は正の整数で入力してください";
-
-            }
-
-
-            // 整合性チェック
-            //「打数」＜「安打数」の場合
-            // メッセージ：「安打数は打数以下の値を入力してください」
-
-            if (batsNumber < hitsNumber)
-            {
-                return "安打数は打数以下の値を入力してください";
-            }
-
-            // ここまで来たのでエラーなし＝空白を返却
-            return "";
-        }
-
-
 
         #endregion
     }
